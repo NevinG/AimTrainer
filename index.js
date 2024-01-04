@@ -82,7 +82,7 @@ function resetGame(){
     ctx.font = "64px courier";
     ctx.fillStyle = "black";
     ctx.strokeStyle = "black";
-    ctx.fillText("Click to start", ctx.canvas.width / 2 - 32 * 7, ctx.canvas.height / 2);
+    ctx.fillText("Click to start", ctx.canvas.width / 2 - 32 * 7, ctx.canvas.height / 2, ctx.canvas.width);
     timerInterval = undefined;
     targetsLeft = targetsToClick;
     gameStarted = false;
@@ -123,5 +123,14 @@ function drawTarget(x, y, r){
     ctx.stroke();
     ctx.closePath();
 }
+
+//resizing
+function sizeCanvas() {
+    ctx.canvas.width = canvas.offsetWidth;
+    ctx.canvas.height = canvas.offsetHeight;
+    resetGame();
+}
+
+new ResizeObserver(sizeCanvas).observe(canvas.parentElement);
 
 
